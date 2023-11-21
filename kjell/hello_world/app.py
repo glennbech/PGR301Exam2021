@@ -2,23 +2,20 @@ import json
 import boto3
 import os
 
-# Denne koden kan også kjøres som en selvstendig applikasjon (Uten SAM) bare gjøre følgende
-# (dersom man har python på maskinen sin altså...)
-#
-# Instruksjoner for å kjøre ... (Kan sikkert lage container senere ..)
-#
-# pip3 install -r requirements.txt
-# python3 app.py
-#
-# Hilsen Kjell
 
 s3_client = boto3.client('s3', region_name='eu-west-1')
 rekognition_client = boto3.client('rekognition', region_name='eu-west-1')
 
 # Oppgave 1A
-BUCKET_NAME = "kjellsimagebucker"
+BUCKET_NAME = os.environ.get('BUCKET_NAME')
 
 def lambda_handler(event, context):
+    
+    if BUCKET_NAME is None:
+        return {
+            "statusCode": 500,
+            "body": "S3 bucket variable not set"
+        }
 
     # List all objects in the S3 bucket
     paginator = s3_client.get_paginator('list_objects_v2')
