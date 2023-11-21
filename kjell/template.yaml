@@ -1,9 +1,6 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
-Description: >
-  kjell
-
-  Sample SAM Template for kjell
+Description: Sample SAM Template for 2021
 
 # More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
 Globals:
@@ -12,21 +9,26 @@ Globals:
     MemorySize: 512
 
 Resources:
-
-  Bucket:
+  ImageBucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: "2021-image-bucket"
+      BucketName: kand2021imagebucket
+      
   HelloWorldFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
       CodeUri: hello_world/
       Handler: app.lambda_handler
       Runtime: python3.9
+      Environment:
+        Variables:
+          BUCKET_NAME: !Ref ImageBucket
       Architectures:
         - x86_64
       Policies:
         - AmazonRekognitionFullAccess
+        - S3ReadPolicy:
+            BucketName: !Ref ImageBucket
       Events:
         HelloWorld:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
@@ -47,3 +49,6 @@ Outputs:
   HelloWorldFunctionIamRole:
     Description: "Implicit IAM Role created for Hello World function"
     Value: !GetAtt HelloWorldFunctionRole.Arn
+  S3BucketName:
+    Description: "Bucket name"
+    Value: !Ref ImageBucket
