@@ -24,12 +24,6 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r kjell/hello_world/requirements.txt
 
-    - name: Install AWS SAM CLI
-      run: |
-        wget https://github.com/aws/aws-sam-cli/releases/latest/download/aws-sam-cli-linux-x86_64.zip
-        unzip aws-sam-cli-linux-x86_64.zip -d sam-installation
-        sudo ./sam-installation/install
-
     - name: Build SAM Application
       run: sam build --use-container
       working-directory: ./kjell
