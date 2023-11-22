@@ -23,22 +23,28 @@ def lambda_handler(event, context):
 
     for page in paginator.paginate(Bucket=BUCKET_NAME):
         for obj in page.get('Contents', []):
-            # Perform PPE detection using Rekognition
-            rekognition_response = rekognition_client.detect_protective_equipment(
-                Image={
-                    'S3Object': {
-                        'Bucket': BUCKET_NAME,
-                        'Name': obj['Key']
-                    }
-                },
-                SummarizationAttributes={
-                    'MinConfidence': 80,  # Confidence level threshold
-                    'RequiredEquipmentTypes': ['FACE_COVER']
-                }
-            )
-            rekognition_results.append(rekognition_response)
+            
+            if obj['Key'].lower().endswith('.jpg') or obj['Key'].lower().endswith('.jpeg'):
+                try:
+                    rekognition_response = rekognition_client.detect_protective_equipment(
+                        Image={
+                            'S3Object': {
+                                'Bucket': BUCKET_NAME,
+                                'Name': obj['Key']
+                            }
+                        },
+                        SummarizationAttributes={
+                            'MinConfidence': 80,
+                            'RequiredEquipmentTypes': ['FACE_COVER']
+                        }
+                    )
+                    rekognition_results.append(rekognition_response)
+                except Exception as e:
+                    print(f"Error processing file {obj['Key']}: {str(e)}")
 
     return {
         "statusCode": 200,
         "body":  json.dumps(rekognition_results),
     }
+print(lambda_handler(None, None))
+    
