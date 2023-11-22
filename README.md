@@ -59,6 +59,10 @@ BUCKET_NAME=kjellsimagebucket kjellpy
 
 # Oppgave 2b
 
+##### ECR opprettet og workflow laget. Bygger på push til alle branches, men er man på main så pushes det også til ECR. Siste image har fått latest på tag. 
+[![Java CI/CD to AWS ECR](https://github.com/SorensenMartin/PGR301Exam2021/actions/workflows/2021_ecr_publish.yml/badge.svg)](https://github.com/SorensenMartin/PGR301Exam2021/actions/workflows/2021_ecr_publish.yml)
+
+# Oppgave 3a
 
 
 
