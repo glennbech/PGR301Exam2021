@@ -42,7 +42,7 @@ jobs:
       run: |
         SHORT_SHA=${SHORT_SHA:0:9}
         IMAGE_TAG="kand2021-ppe:${SHORT_SHA}"
-        docker tag kand2021:${IMAGE_TAG} $ECR_REGISTRY/$ECR_REPOSITORY:${IMAGE_TAG}
+        docker tag $ECR_REGISTRY/$ECR_REPOSITORY:${IMAGE_TAG}
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:${IMAGE_TAG}
-        docker tag kand2021:${IMAGE_TAG} $ECR_REGISTRY/$ECR_REPOSITORY:latest
+        docker tag $ECR_REGISTRY/$ECR_REPOSITORY:latest
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
