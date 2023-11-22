@@ -38,11 +38,10 @@ jobs:
       env:
         ECR_REGISTRY: '244530008913.dkr.ecr.eu-west-1.amazonaws.com'
         ECR_REPOSITORY: 'kand2021'
-        SHORT_SHA: ${{ github.sha }}
+        IMAGE_TAG: ${{ github.sha }}
       run: |
-        SHORT_SHA=${SHORT_SHA:0:9}
-        IMAGE_TAG="kand2021-ppe:${SHORT_SHA}"
-        docker tag kand2021 $ECR_REGISTRY/$ECR_REPOSITORY:${IMAGE_TAG}
+        SHORT_SHA=${IMAGE_TAG:0:9}
+        docker tag kand2021:${SHORT_SHA} $ECR_REGISTRY/$ECR_REPOSITORY:${IMAGE_TAG}
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:${IMAGE_TAG}
-        docker tag kand2021 $ECR_REGISTRY/$ECR_REPOSITORY:latest
+        docker tag kand2021:${SHORT_SHA} $ECR_REGISTRY/$ECR_REPOSITORY:latest
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
