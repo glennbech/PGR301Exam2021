@@ -42,4 +42,5 @@ jobs:
       run: |
         docker tag kand2021:${IMAGE_TAG} $ECR_REGISTRY/$ECR_REPOSITORY:${IMAGE_TAG}
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:${IMAGE_TAG}
+        docker tag kand2021:${IMAGE_TAG} $ECR_REGISTRY/$ECR_REPOSITORY:latest
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
