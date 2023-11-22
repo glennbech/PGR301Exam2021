@@ -21,15 +21,17 @@ jobs:
 
     - name: Build Docker Image
       run: docker build -t kand2021:${{ github.sha }} .
+      
+    - name: configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_REGION: eu-west-1
 
     - name: Login to Amazon ECR
       if: github.ref == 'refs/heads/main'
       uses: aws-actions/amazon-ecr-login@v1
-      env:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: eu-west-1
-
 
     - name: Tag and push image to Amazon ECR
       if: github.ref == 'refs/heads/main'
