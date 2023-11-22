@@ -52,6 +52,15 @@ BUCKET_NAME=kjellsimagebucket kjellpy
 
 ![image](https://github.com/SorensenMartin/PGR301Exam2021/assets/89515797/467924d9-41e4-4cec-9637-a535f9045512)
 
+##### Så testet jeg at dockerfilen fungerte (etter å ha rotet med litt plassmangel som måtte ryddes i docker) og kjørte dockerfilen. 
+![image](https://github.com/SorensenMartin/PGR301Exam2021/assets/89515797/715ff4a4-c0b5-4452-94c6-67453e026663)
+##### Fikk også her det samme resultatet av curl commandoen: 
+![image](https://github.com/SorensenMartin/PGR301Exam2021/assets/89515797/234774fb-d6bd-4eef-9787-a22a98bf9b28)
+
+# Oppgave 2b
+
+
+
 
 
 
