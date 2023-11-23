@@ -9,6 +9,7 @@ import com.amazonaws.services.s3.model.ListObjectsV2Result;
 import com.amazonaws.services.s3.model.S3ObjectSummary;
 import com.example.s3rekognition.PPEClassificationResponse;
 import com.example.s3rekognition.PPEResponse;
+
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
-
+import java.util.stream.Collectors;
 
 @RestController
 public class RekognitionController implements ApplicationListener<ApplicationReadyEvent> {
@@ -80,7 +81,57 @@ public class RekognitionController implements ApplicationListener<ApplicationRea
             }
         }
         PPEResponse ppeResponse = new PPEResponse(bucketName, classificationResponses);
-        return ResponseEntity.ok(ppeResponse);
+        return ResponseEntity.ok(ppeResponse);    }
+    
+    /**
+     * Assuming that this is primarly worked at a construction site, it is nice for security
+     * to be able to see if any old employes are coming back to site with malicious intentions!
+     * Therefore a scan to see if anyone has any dangerous items at their person is a good safety
+     * feature that also can perhaps trigger an alert! :)
+     */
+    @GetMapping("/detect-security-risk-items")
+    public ResponseEntity<List<String>> detectSecurityRiskItems(@RequestParam String bucketName) {
+            // List all objects in the S3 bucket
+        ListObjectsV2Result imageList = s3Client.listObjectsV2(bucketName);
+    
+        // This will hold all of our detected items
+        List<String> dangerousItems = new ArrayList<>();
+    
+        // This is all the images in the bucket
+        List<S3ObjectSummary> images = imageList.getObjectSummaries();
+            
+        for (S3ObjectSummary image : images) {
+            String fileName = image.getKey();
+            if (fileName.toLowerCase().endsWith(".jpg") || fileName.toLowerCase().endsWith(".jpeg")) {
+                logger.info("Scanning " + fileName + " for dangerous items");
+    
+                DetectLabelsRequest request = new DetectLabelsRequest()
+                        .withImage(new Image()
+                                .withS3Object(new S3Object()
+                                        .withBucket(bucketName)
+                                        .withName(fileName)))
+                        .withMaxLabels(10)
+                        .withMinConfidence(75F);
+    
+                DetectLabelsResult result = rekognitionClient.detectLabels(request);
+    
+                List<String> itemsInImage = result.getLabels().stream()
+                    .filter(label ->
+                    label.getName().equals("Gun") || 
+                    label.getName().equals("Knife") ||
+                    label.getName().equals("Sword") ||
+                    label.getName().equals("Tank")
+                    )
+                    .map(Label::getName)
+                    .collect(Collectors.toList());
+    
+                if (!itemsInImage.isEmpty()) {
+                    dangerousItems.addAll(itemsInImage);
+                    logger.info("Found dangerous items in " + fileName + ": " + itemsInImage);
+                }
+            }
+        }
+        return ResponseEntity.ok(dangerousItems);
     }
 
     /**
