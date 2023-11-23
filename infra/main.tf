@@ -1,20 +1,14 @@
 terraform {
   backend "s3" {
-    bucket         = "pgr301-2021-terraform-state"
-    key            = "kand2021/state/apprunner.state"
-    region         = "eu-north-1"
+    bucket         = var.s3_bucket
+    key            = var.s3_key
+    region         = var.s3_bucket_region
     encrypt        = true
   }
 }
 
 provider "aws" {
-  region = "eu-west-1"
-}
-
-variable "service_name" {
-  description = "The name of the AWS App Runner service"
-  type        = string
-  default     = "edu-apprunner-service-kand-2021"
+  region = var.aws_region
 }
 
 resource "aws_apprunner_service" "service" {
@@ -28,13 +22,13 @@ resource "aws_apprunner_service" "service" {
 
   source_configuration {
     authentication_configuration {
-      access_role_arn = "arn:aws:iam::244530008913:role/service-role/AppRunnerECRAccessRole"
+      access_role_arn = var.iam_role_arn
     }
     image_repository {
       image_configuration {
         port = "8080"
       }
-      image_identifier      = "244530008913.dkr.ecr.eu-west-1.amazonaws.com/kand2021:latest"
+      image_identifier      = "${var.ecr_registry}/${var.ecr_repository}:latest"
       image_repository_type = "ECR"
     }
     auto_deployments_enabled = true
@@ -42,7 +36,7 @@ resource "aws_apprunner_service" "service" {
 }
 
 resource "aws_iam_role" "role_for_apprunner_service" {
-  name               = "kand2021-app-runner"
+  name               = var.iam_role_name
   assume_role_policy = data.aws_iam_policy_document.assume_role.json
 }
 
