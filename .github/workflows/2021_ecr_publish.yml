@@ -1,4 +1,4 @@
-name: Java CI/CD to AWS ECR
+name: Docker build on push, if main;Push image to AWS, Terraform apprunner deploy
 
 on:
   push:
@@ -44,3 +44,16 @@ jobs:
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:${IMAGE_TAG}
         docker tag kand2021:${IMAGE_TAG} $ECR_REGISTRY/$ECR_REPOSITORY:latest
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
+
+
+    - name: Set up Terraform
+      if: github.ref == 'refs/heads/main'
+      uses: hashicorp/setup-terraform@v1
+
+    - name: Terraform Init
+      if: github.ref == 'refs/heads/main'
+      run: terraform init
+
+    - name: Terraform Apply
+      if: github.ref == 'refs/heads/main'
+      run: terraform apply -auto-approve
