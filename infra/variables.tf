@@ -7,7 +7,7 @@ variable "aws_region" {
 variable "service_name" {
   description = "The name of the AWS App Runner service"
   type        = string
-  default     = "edu-apprunner-service-kand2021"
+  default     = "edu-apprunner-service-kand-2021"
 }
 
 variable "ecr_registry" {
