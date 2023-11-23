@@ -2,6 +2,8 @@ name: Docker build on push, if main; Push image to AWS, Terraform apprunner depl
 
 on:
   push:
+    paths-ignore:
+      - 'README.md'
 
 jobs:
   build:
