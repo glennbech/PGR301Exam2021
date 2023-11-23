@@ -64,6 +64,28 @@ BUCKET_NAME=kjellsimagebucket kjellpy
 
 # Oppgave 3a
 
+##### Endringer gjort på terraform koden til kjell er som følger:
+      - Hardkoding av service name byttet til noe passende for meg: "edu-apprunner-service-kand-2021"
+      - Alle "hardkodede" verdier har blitt byttet ut med var.ettellerannent slik at man enkelt kan endre variabler i eget variables.tf fil.
+      - Søkte i dokumentasjonen og fant dette: ![image](https://github.com/SorensenMartin/PGR301Exam2021/assets/89515797/9c73da3e-a3d6-4af5-98b1-c78064f23453)
+      - Endret da min konfigurasjon etter denne malen, noe som ser ut til å ha funket fint: ![image](https://github.com/SorensenMartin/PGR301Exam2021/assets/89515797/70a0dfc8-11a9-4769-8183-8354abfbf269) 
+      - Se main.tf med variables.tf for alle endringer gjort fra kjells orginale skript. 
+      - Etter dette var gjort startet jeg en terraform for å lage min egen IAM rolle for app runneren, samt kjøre fra mitt ECR fra tidligere oppgave.
+
+# Oppgave 3b
+
+##### Workflowen har blitt separert inn i to egen oppgaver, en for å bygge og en for å deploye image til ECR og terraform på main. Se Workflow: 2021_ecr_publish.yml
+##### La også til i main.tf endringer for backend og aws terraform provider. Brukte her bucket fra tidligere øvinger pgr301-2021-terraform-state for å lagre min state. 
+
+### For at workflowen skal fungere på fork, er det noen ting man må gjøre. 
+      - Som i oppgave 1a er det eneste som er uungåelig at en fork må inneholde egene aws_access_key_id og aws_secret_access_key. 
+      - Så lenge disse nøkklene gir samme tilgang på aws som de jeg har blitt tildelt, skal det ikke være nødvendig og endre noe annent for å kjøre workflowen.
+      - Om man vil, kan mann alltid endre variablene i variables.tf for å bruke sitt eget ECR, Bucket, Apprunner eller annent. Men det jeg har laget fungerer da altså greit for andre med samme rettigheter.
+
+##### Under kan man se flowen 👇
+[![Java CI/CD to AWS ECR](https://github.com/SorensenMartin/PGR301Exam2021/actions/workflows/2021_ecr_publish.yml/badge.svg)](https://github.com/SorensenMartin/PGR301Exam2021/actions/workflows/2021_ecr_publish.yml)
+
+# Oppgave 4a
 
 
 
