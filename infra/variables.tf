@@ -4,24 +4,6 @@ variable "aws_region" {
   default     = "eu-west-1"
 }
 
-variable "s3_bucket" {
-  description = "The S3 bucket for Terraform state"
-  type        = string
-  default     = "pgr301-2021-terraform-state"
-}
-
-variable "s3_key" {
-  description = "The S3 key for Terraform state"
-  type        = string
-  default     = "kand2021/state/apprunner.state"
-}
-
-variable "s3_bucket_region" {
-  description = "The region the state bucket is located"
-  type        = string
-  default     = "eu-north-1"
-}
-
 variable "service_name" {
   description = "The name of the AWS App Runner service"
   type        = string
