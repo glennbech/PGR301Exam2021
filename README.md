@@ -67,8 +67,10 @@ BUCKET_NAME=kjellsimagebucket kjellpy
 ##### Endringer gjort på terraform koden til kjell er som følger:
       - Hardkoding av service name byttet til noe passende for meg: "edu-apprunner-service-kand-2021"
       - Alle "hardkodede" verdier har blitt byttet ut med var.ettellerannent slik at man enkelt kan endre variabler i eget variables.tf fil.
-      - Søkte i dokumentasjonen og fant dette: ![image](https://github.com/SorensenMartin/PGR301Exam2021/assets/89515797/9c73da3e-a3d6-4af5-98b1-c78064f23453)
-      - Endret da min konfigurasjon etter denne malen, noe som ser ut til å ha funket fint: ![image](https://github.com/SorensenMartin/PGR301Exam2021/assets/89515797/70a0dfc8-11a9-4769-8183-8354abfbf269) 
+      - Søkte i dokumentasjonen og fant dette: 
+![image](https://github.com/SorensenMartin/PGR301Exam2021/assets/89515797/9c73da3e-a3d6-4af5-98b1-c78064f23453)
+      - Endret da min konfigurasjon etter denne malen, noe som ser ut til å ha funket fint: 
+![image](https://github.com/SorensenMartin/PGR301Exam2021/assets/89515797/70a0dfc8-11a9-4769-8183-8354abfbf269) 
       - Se main.tf med variables.tf for alle endringer gjort fra kjells orginale skript. 
       - Etter dette var gjort startet jeg en terraform for å lage min egen IAM rolle for app runneren, samt kjøre fra mitt ECR fra tidligere oppgave.
 
