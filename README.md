@@ -96,7 +96,7 @@ BUCKET_NAME=kjellsimagebucket kjellpy
 ![image](https://github.com/SorensenMartin/PGR301Exam2021/assets/89515797/b1ee2c9f-8bc6-4bc0-b48e-40e141ca0e22)
 ## For denne oppgaven har jeg gjort om applikasjonen til å være en service mitt sikkerhetsfirma tilbyr ulike byggeplasser!
 
-
+Passordtest
 
 
 
