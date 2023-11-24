@@ -16,7 +16,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
-
+import io.micrometer.cloudwatch2.CloudWatchConfig;
+import io.micrometer.cloudwatch2.CloudWatchMeterRegistry;
 import io.micrometer.core.instrument.*;
 
 import java.util.ArrayList;
@@ -94,7 +95,7 @@ public class RekognitionController implements ApplicationListener<ApplicationRea
             }
         }
         
-        sample.stop(meterRegistry.timer("ppe scan timer ", "bucket ", bucketName));
+        sample.stop(meterRegistry.timer("ppe-scan-timer", "bucket ", bucketName));
         
         PPEResponse ppeResponse = new PPEResponse(bucketName, classificationResponses);
         return ResponseEntity.ok(ppeResponse);   
@@ -202,6 +203,15 @@ public class RekognitionController implements ApplicationListener<ApplicationRea
         return ResponseEntity.ok("Found " + dangerousSubstance.size() +
                                  " dangerous substances in todays photos:" + "\n" + dangerousSubstance);
     }
+    
+    @GetMapping("/testMetric")
+    public ResponseEntity<String> testMetric() {
+        Counter counter = meterRegistry.counter("test.counter");
+        counter.increment();
+    
+        return ResponseEntity.ok("Counter incremented");
+    }
+
     
 
     private static boolean isViolation(DetectProtectiveEquipmentResult result) {
