@@ -20,6 +20,7 @@ import io.micrometer.cloudwatch2.CloudWatchConfig;
 import io.micrometer.cloudwatch2.CloudWatchMeterRegistry;
 import io.micrometer.core.instrument.*;
 
+import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -57,7 +58,7 @@ public class RekognitionController implements ApplicationListener<ApplicationRea
     public ResponseEntity<PPEResponse> scanForPPE(@RequestParam String bucketName) {
         // Add a timer to see how fast our system can registrer faults in use of hard-hats.
         Timer.Sample sample = Timer.start(meterRegistry);
-        
+
         // List all objects in the S3 bucket
         ListObjectsV2Result imageList = s3Client.listObjectsV2(bucketName);
 
@@ -109,7 +110,14 @@ public class RekognitionController implements ApplicationListener<ApplicationRea
      */
     @GetMapping("/scan-sri")
     public ResponseEntity<String> detectSecurityRiskItems(@RequestParam String bucketName) {
-            // List all objects in the S3 bucket
+        // A good security company needs to be able to respons to treath fast! therefore a timer
+        // to asses how fast we can detect danger, and in turn act on them, is crucial!
+        Timer.Sample sample = Timer.start(meterRegistry);
+        
+        // Counts all dangerous items found at the site.
+        Counter dangerousItemsCounter = meterRegistry.counter("security-items-detection-count", "bucket", bucketName);
+        
+        // List all objects in the S3 bucket
         ListObjectsV2Result imageList = s3Client.listObjectsV2(bucketName);
     
         // This will hold all of our detected items
@@ -145,10 +153,14 @@ public class RekognitionController implements ApplicationListener<ApplicationRea
     
                 if (!itemsInImage.isEmpty()) {
                     dangerousItems.addAll(itemsInImage);
+                    dangerousItemsCounter.increment(itemsInImage.size());
                     logger.info("Found dangerous items in " + fileName + ": " + itemsInImage);
                 }
             }
         }
+        
+        sample.stop(meterRegistry.timer("sri-scan-timer", "bucket ", bucketName));
+        
         return ResponseEntity.ok("Found " + dangerousItems.size() +
                                  " dangerous items in todays photos:" + "\n" + dangerousItems);
     }
@@ -160,7 +172,7 @@ public class RekognitionController implements ApplicationListener<ApplicationRea
      */
     @GetMapping("/scan-srs")
     public ResponseEntity<String> detectSecurityRiskSubstances(@RequestParam String bucketName) {
-            // List all objects in the S3 bucket
+        // List all objects in the S3 bucket
         ListObjectsV2Result imageList = s3Client.listObjectsV2(bucketName);
     
         // This will hold all of our detected items
@@ -193,7 +205,15 @@ public class RekognitionController implements ApplicationListener<ApplicationRea
                     )
                     .map(Label::getName)
                     .collect(Collectors.toList());
-    
+                //Sjekk hvilke farlige substanser som oftest ankommer arbeidsplassen for å gjøre 
+                //forebyggende tiltak!
+                result.getLabels().stream()
+                    .filter(label -> Arrays.asList("Beer", "Alcohol", "Smoke Pipe", "Pill").contains(label.getName()))
+                    .forEach(label -> {
+                        Counter counter = meterRegistry.counter("security-substances-detected", "type", label.getName());
+                        counter.increment();
+                    });    
+            
                 if (!itemsInImage.isEmpty()) {
                     dangerousSubstance.addAll(itemsInImage);
                     logger.info("Found dangerous items in " + fileName + ": " + itemsInImage);
@@ -204,16 +224,6 @@ public class RekognitionController implements ApplicationListener<ApplicationRea
                                  " dangerous substances in todays photos:" + "\n" + dangerousSubstance);
     }
     
-    @GetMapping("/testMetric")
-    public ResponseEntity<String> testMetric() {
-        Counter counter = meterRegistry.counter("test.counter");
-        counter.increment();
-    
-        return ResponseEntity.ok("Counter incremented");
-    }
-
-    
-
     private static boolean isViolation(DetectProtectiveEquipmentResult result) {
         return result.getPersons().stream()
                 .flatMap(p -> p.getBodyParts().stream())
