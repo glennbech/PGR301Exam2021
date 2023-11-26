@@ -33,3 +33,15 @@ variable "iam_role_name" {
   type        = string
   default     = "kand2021-app-runner"
 }
+
+variable "candidate_name" {
+  description = "Name of the candidate"
+  type        = string
+  default     = "Kandidat2021"
+}
+
+variable "namespace" {
+  description = "Namespace for the metrics"
+  type        = string
+  default     = "2021ConstructionSecurityCo"
+}
