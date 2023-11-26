@@ -34,6 +34,7 @@ public class RekognitionController implements ApplicationListener<ApplicationRea
     private final MeterRegistry meterRegistry;
 
     private static final Logger logger = Logger.getLogger(RekognitionController.class.getName());
+    
 
     @Autowired
     public RekognitionController(MeterRegistry meterRegistry) {
@@ -58,6 +59,12 @@ public class RekognitionController implements ApplicationListener<ApplicationRea
     public ResponseEntity<PPEResponse> scanForPPE(@RequestParam String bucketName) {
         // Add a timer to see how fast our system can registrer faults in use of hard-hats.
         Timer.Sample sample = Timer.start(meterRegistry);
+        
+        //Check have many bad or corrupted images in bucket.        
+        Counter nonJpegImagesCounter = meterRegistry.counter("non-jpeg-images-count", "bucket", bucketName);
+        
+        //Total files scanned.
+        Counter allFilesScannedCounter = meterRegistry.counter("all-files-scanned-count", "bucket", bucketName);
 
         // List all objects in the S3 bucket
         ListObjectsV2Result imageList = s3Client.listObjectsV2(bucketName);
@@ -71,6 +78,15 @@ public class RekognitionController implements ApplicationListener<ApplicationRea
         // Iterate over each object and scan for PPE
         for (S3ObjectSummary image : images) {
             String fileName = image.getKey();
+            
+            allFilesScannedCounter.increment();
+            
+            if (!(fileName.toLowerCase().endsWith(".jpg") || fileName.toLowerCase().endsWith(".jpeg"))) {
+            // Increment the counter for non-JPEG/JPG images
+            nonJpegImagesCounter.increment();
+            continue; 
+            }
+            
             if (fileName.toLowerCase().endsWith(".jpg") || fileName.toLowerCase().endsWith(".jpeg")) {
                 logger.info("scanning " + fileName);
 
@@ -96,7 +112,7 @@ public class RekognitionController implements ApplicationListener<ApplicationRea
             }
         }
         
-        sample.stop(meterRegistry.timer("ppe-scan-timer", "bucket ", bucketName));
+        sample.stop(meterRegistry.timer("ppe-scan-timer", "bucket", bucketName));
         
         PPEResponse ppeResponse = new PPEResponse(bucketName, classificationResponses);
         return ResponseEntity.ok(ppeResponse);   
@@ -116,6 +132,8 @@ public class RekognitionController implements ApplicationListener<ApplicationRea
         
         // Counts all dangerous items found at the site.
         Counter dangerousItemsCounter = meterRegistry.counter("security-items-detection-count", "bucket", bucketName);
+        Counter imagesScannedCounter = meterRegistry.counter("security-items-scanned", "bucket", bucketName);
+        Counter safeWorkersCounter = meterRegistry.counter("safe-workers-detected", "bucket", bucketName);
         
         // List all objects in the S3 bucket
         ListObjectsV2Result imageList = s3Client.listObjectsV2(bucketName);
@@ -130,7 +148,8 @@ public class RekognitionController implements ApplicationListener<ApplicationRea
             String fileName = image.getKey();
             if (fileName.toLowerCase().endsWith(".jpg") || fileName.toLowerCase().endsWith(".jpeg")) {
                 logger.info("Scanning " + fileName + " for dangerous items");
-    
+                imagesScannedCounter.increment();
+                
                 DetectLabelsRequest request = new DetectLabelsRequest()
                         .withImage(new Image()
                                 .withS3Object(new S3Object()
@@ -155,7 +174,12 @@ public class RekognitionController implements ApplicationListener<ApplicationRea
                     dangerousItems.addAll(itemsInImage);
                     dangerousItemsCounter.increment(itemsInImage.size());
                     logger.info("Found dangerous items in " + fileName + ": " + itemsInImage);
+                } 
+                else {
+                    safeWorkersCounter.increment();
                 }
+                
+                    
             }
         }
         
