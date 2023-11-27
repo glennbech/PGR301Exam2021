@@ -200,16 +200,21 @@ Fordeler og ulemper ved bruk av CI i et utviklingsprosjekt, både som team og al
 -	Tekstkvalitet ekstra viktig: God kunnskap i teamet om det å skrive gode tester er viktig. Svake tester i pipeline kan føre til falske positiver og feil som sniker              seg igjennom systemet. Det er også viktig at noen på teamet jobber med å oppdatere disse testene til å holde stand med resten av kodebasen. Menneskelige ressurser kreves       også for å sørge for at CI-systemet blir vedlikeholdt på en god måte. 
 -	Sikkerhet: Tar med en liten henvisning til det med sikkerhet. Pipelinen må ofte ha tilgang på sensitiv informasjon. Om man gjør feil så kan det eksempelvis hende               at noen med dårlige intensjoner får tilgang på ett AWS Miljø som kan koste Noen dyrt :)
       
-I praksis så kan et team bruke CI via Github på samme måte som vi har gjort det i dette faget. Sette opp en github actions med ulike oppgaver. Dette kan være alt fra bygg på ulike branches og ren testing. Vi har også sett på det med pull-request. Effektiv implementering av dette kan sørge for at all kode blir gjennomgått av for eksempel en lagleder som kan sørge for at all koden er konsistent og god før den blir lagt til på produksjon/main. 
-En god feedback loop med tilbakemelding av action sprossesene er også essensielt for å sørge for en smidig håndtering av eventuelle feil i en av prosessene som de ulike actions filene kjører. God CI handler også om å benytte seg godt av nettopp av ulike branches man kan jobbe på. Dette kan være main/produksjon, ulike funksjoner som har hver sin branch, ett for utvikling, ett for å teste tester etc. 
+I praksis så kan et team bruke CI via Github på samme måte som vi har gjort det i dette faget: Sette opp en github actions med ulike oppgaver. Dette kan være alt fra bygg på ulike branches og ren testing. Vi har også sett på det med pull-requests. Effektiv implementering av dette kan sørge for at all kode blir gjennomgått av for eksempel en lagleder som kan sørge for at all koden er konsistent og god før den blir lagt til på produksjon/main. 
+
+En god feedback loop med tilbakemelding av actions prossesene er også essensielt for å sørge for en smidig håndtering av eventuelle feil i en av prosessene som de ulike actions filene kjører. God CI handler også om å benytte seg godt av nettopp av ulike branches man kan jobbe på. Dette kan være main/produksjon, ulike funksjoner som har hver sin branch, ett for utvikling, ett for å teste tester etc. 
+
 Det er viktig og se CI som en helhet også. Det å implementere CI med CD er essensielt. Der CI har ansvar for testing og bygging, har CD (Kontinuerlig Levering) ansvar for at denne koden raskt og smertefritt blir levert til blant annet produksjonsmiljøet. Dette har vi sett på i denne oppgaven, hvor både bygging og push til AWS sørviser skjer ved verdt push. Her er også publiseringen avhengig av at byggingen faktisk ikke feiler. Her er kanskje sleve CI delen av programmet litt tynn på testing 😉 I et team som jobber under disse prinsippene vil forhåpentligvis kommunikasjonen og forståelsen for hverandre blant teamet god, samt at avstanden fra ny kode til produksjon vil være kort!
 
 # Oppgave 5b
 
 ### Scrum vs Devops
-Får å forstå fordelene og ulempene ved bruk av to ulike metodikker innenfor programvareutvikling er det først viktig å understreke hva de ulike metodenes kjennetegn og hovedtrekk er.
+Får å forstå fordelene og ulempene ved bruk av to ulike metodikker innenfor programvareutvikling er det først viktig å understreke hva de ulike metodenes kjennetegn og 
+hovedtrekk er.
+
 ### Scrum/Smidig: 
 Scrum er noe jeg har kjennskap til gjennom prosjektoppgaven forrige semester. Derfor har jeg litt erfaring her med tanke på hvordan det er å jobbe i ett team i praksis. Scrum er basert på «Agile Manifesto» Her blir viktigheten av fleksibilitet, kundesamarbeid og tilpasningsevne prioritert. Det å reagere på endring effektivt er det viktigste elementet for vellykket utvikling. 
+
 Scrum handler om korte, iterative utviklingssykluser, kjent som sprinter. Disse sprintene kan variere i lengde, men typiske sprinter er fra en til fire uker. Under planlegging av sprinten setter man opp ulike punkter og mål, hvor fokuset er å fullføre en bestemt del av en leveranse. Etter sprinten er over er da målet at denne planlagte funksjonaliteten skal være leverbar og kvalitetsmessig sterk. I løpet av sprinten er det noen ritualer som er essensielle for å sikre flyt og fremdrift. Daily Standup: Korte daglige møter for å diskutere arbeid, eventuelle problemer og progognosen for sprinten. Sprint planning, review og retrospective. Dette er møter hvor man planlegger sprinten, går igjennom hva mål som er oppnådd etter sprint, og diskuterer/reflekterer over sprinten for å finne ut av hva som var bra og hva som kan forbedres. 
 Ett utviklingsteam som arbeider med Scrum som metode, deles opp i ulike roller. Disse rollene er som følger: 
 -	Produktteier: Ansvarlig for hva som er prosjektets mål. Prosjekteier skal veilede resten av teamet når det kommer til ønskelige funksjoner og prioriteringer under              prosjektets levetid. 
@@ -257,6 +262,33 @@ Et eksempel på en fordelaktig situasjon hvor bruken av scrum vil være gunstig 
 For Devops kan en fordelaktig situasjon være en etablert, stor bedrift på nett. Om vi tar google som eksempel, vil viktigheten av kontinuerlig oppdatering og testing være essensielt. Samtidig som dette skjer, må man sørge for at nedetiden på nettsiden blir minimal. Devops sitt fokus på automatisering av integrering og testing er derfor i et slikt miljø optimalt.
 
 For å konkludere kan vi si at både Devops og Scrum har sine fordeler og ulemper, selv om målet kan sies og være det samme. Begge metodikkene tar for seg kompleksiteten i programvareutvikling. Fokuset er på å bryte ned prosesser i mer menneskelig håndterbare biter for å øke kvaliteten på produktet. De har forskjellige stryker, som kan komplimentere hverandre. Valget av hvilken metode man vil benytte seg av må tas i sammenheng med kravene for prosjektet man setter ut på. Det er også mulig å kombinere bruken av disse metodene for å dra nytte av begges fordeler i utviklingsprosessen. 
+
+# Oppgave 5c
+
+### Feedback
+
+Feedback som prinsipp i Devops handler om tilbakemelding. Det å skape ett system og kultur for kontinuerlig tilbakemeldinger på tvers av hele utvikling og driftsprosessen er fokuset. Feedback er avgjørende for hvorvidt en bedrift vil lykkes eller feiles med implementasjon av Devops. Jeg har ved flere anledninger i oppgave A og B påpekt viktigheten av en feedback loop. Hva og hvordan vi kan dra nytte av dette i en personlig applikasjon jeg jobber med, samt hvordan jeg kan implementere det, vil jeg diskutere her:
+
+Først og fremst, Feedback Loop: En feedback loop handler om hvordan man samler informasjon om et system. Det å samle inn, analysere og trekke begrunnelser basert på systemets ytelse og brukeropplevelser kontinuerlig er viktig for å styre fremtidige løsninger. Slik data kan vi samle via automatiserte tester, analyser av bruk samt tilbakemeldinger. 
+
+For å forsikre meg om at funksjonalitet jeg har arbeidet med vil møte behovet til sluttbrukeren, er det flere steg jeg kan ta. Først vil det være logisk og sette opp ulike mekanismer som gir meg mulighet til å samle data fra feedback.
+-	Undersøkelser: Brukerundersøkelser og intervju spørsmål til brukere av applikasjonen kan hjelpe med å filtrere ut nyttige og uønskede ideer. Dette kan gi en pekepinn på        hvordan forbrukere opplever det nåværende systemer, samt skape en forståelse for deres forventing med tanke på fremtidig funksjonalitet. 
+-	Brukertester: Få brukere til å teste de nye funksjonene. Selv om en funksjon kan virke intuitiv og brukervennlig for meg som utvikler, kan den fort oppleves helt gresk         for en bruker. Dette sørger for at funksjonaliteten blir mer intuitiv. Dette kan gjøres gjennom prototype eller MVP av en funksjon.
+-	Programvare relatert: Metrics, Github Issuess, Jira etc. 
+
+Ved hjelp av disse mekanismene kan man få tilbakemelding fra de som faktisk skal bruke min applikasjon, noe som er livsviktig for den langsiktige suksessen til en applikasjon. Når det kommer til integrering av feedback under utvikling, BØR man ta i bruk denne dataen.  
+
+Under planlegging kan man benytte seg av feedback samlet inn fra brukerne til å kartlegge hva som skal prioriteres i form av nye funksjoner. Under utviklingen kan man ha fokus på iterativ utvikling. Sette opp faste tidsperioder hvor man gjennomgår og implementerer ny funksjonalitet basert på feedbacken. 
+
+Man kan under utvikling benytte seg av ulike feedback verktøy som Github issues for å spore bugs og innspill fra brukere. Disse kan hjelpe meg med prioritering og bugfixing ettersom den nye funksjonaliteten blir brukt. Det kan også være en ide og sette søkelys på loggføring og overvåking. Det å analysere data med tanke på hvordan applikasjonen blir brukt er viktig. Dette kan være brukerdata, frekvensen ulike elementer blir brukt, engasjement rundt funksjoner og atferd i forhold til ny og gammel funksjonalitet. Dette hjelper med å gi innsikt i hva som blir godt mottatt, og hva som er mindre ønsket. Det kan være smart å bruke verktøy for å kategorisere tilbakemeldinger, for å få en mer helhetlig forståelse av brukerens ønsker. Ved å undersøke disse kategoriene, kan man sette prioriteringer basert på viktigheten. Dette kan være kategorier som Bugs, forbedringsforslag, forespørsler om ny funksjonalitet osv. 
+
+Det å sette opp ulike metrics for å måle verdien av ulike iterasjoner kan hjelpe med kontinuerlig læring. Etter at funksjonaliteten er lansert, er det viktig med kontinuerlig forbedring. Ta i bruk resultatene på de ulike mekanismene for innsamling av informasjon om den nye funksjonaliteten: Hva likte bruker? Hva ved funksjonen blir ikke brukt? Er det vanskelig å forstå seg på? Osv. Det å regelmessig lansere oppdateringer basert på denne feedbacken, samt følge med på responsen på den nye versjonen, vil hjelpe med å forbedre brukervennligheten og nytteverdien av den nye funksjonen gradvis. Dette sørger for at man sammen med brukere kan jobbe seg fram til en meget god løsning, i stedet for å sitte alene å produsere en versjon man selv tror er perfekt. Denne kunne man ha brukt lang tid på, men den blir ikke nødvendigvis tatt godt imot av brukerne av den grunn. 
+
+Som solo utvikler kan det også være en ide og benytte seg av blant annet forumer eller sosiale medier for å kommunisere med brukeren. Er man delaktig her, viser man brukeren at man bryr seg og møter dem på deres arenaer. Dette kan føre til at det blir et samfunn rundt applikasjonen, hvor utvikler å brukere kan jobbe sammen for å produsere den perfekte applikasjonen for begge parter! Ved å være proaktiv og anvende feedback gjennom en hel utviklingsprosess, kan jeg sørge for at applikasjonen min kontinuerlig blir optimalisert basert på ekte brukerdata. Ikke bare vil dette føre til en bedre applikasjon, men en mer lojal og solid brukermasse. 
+
+
+#EOF
+
 
 
 
