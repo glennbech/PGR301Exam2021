@@ -5,7 +5,7 @@ resource "aws_cloudwatch_metric_alarm" "tank_detection_alarm" {
 
   comparison_operator = "GreaterThanThreshold"
   threshold           = var.threshold
-  evaluation_periods  = "5"
+  evaluation_periods  = "1"
   datapoints_to_alarm = 1
   period              = "10"
   statistic           = "Sum"
