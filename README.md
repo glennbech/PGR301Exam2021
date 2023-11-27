@@ -95,8 +95,39 @@ BUCKET_NAME=kjellsimagebucket kjellpy
 # Oppgave 4a
 ![image](https://github.com/SorensenMartin/PGR301Exam2021/assets/89515797/b1ee2c9f-8bc6-4bc0-b48e-40e141ca0e22)
 ## For denne oppgaven har jeg gjort om applikasjonen til å være en service mitt sikkerhetsfirma tilbyr ulike byggeplasser!
+##### Vernevokterene har fått nye ting og bryne seg på, og et kamera fra ulike byggeplasser strømmer daglig inn for sikkerhetssjekk! Endepunktene reflekterer søk som daglig leder for byggeprosjektet har bedt oss være på utkikk etter!
+##### Har for denne oppgaven lagt til to nye endepunkter. Begge bruker rekognition sin label detection, men til ulike hensikter. Under går jeg igjennom alle endepuktene i applikasjonen, hva de gjør, hvordan data som blir registrert og lagret som metrics i cloudwatch, og begrunnelse rundt alle valgene.
+### OBS! Er også beskrivelse rundt valg og de ulike endepunktene i RekognitionController.java!!! 
 
-Passordtest
+# Endepunkt 1: Sjekker om arbeiderene har tatt på seg hjelmen sin før de går inn på byggeplassen!
+
+##### Dette endepunktet er for det mest uendret funksjonelt, men har byttet ut munnbeskyttelse med hjelm for det den skal søke etter. 
+##### Metoden har fått inn noen metrics, disse er som følger: 
+#####      - Timer: Registrerer data på hvor lang tid API kallet bruker på å få tilbake de ferdig sjekkede bildene.
+#####      - Sjekker filene i bucket: Sjekker om noen av bildene tatt av sikkerhetskameraet er korrupte, som gir en indikasjon på helsen til hele systemt.
+
+# Endepunkt 2: Sjekker om noen av arbeiderene prøver å ta meg seg våpen inn på arbeidsplassen!
+
+##### Dette endepunktet bruker som nevt tidligere rekognintion sin label detection, og skanner etter noen forhåndsdefinerte objekter som anses som farlige.
+##### Trygghet på arbeidsplassen handler ikke bare om å ikke få noe tungt i hodet, det handler også om å ikke bli skutt av kollegaen din.
+##### Metoden har fått inn noen metrics, disse er som følger:
+#####      - Timer: Også her en timer, livsviktig at sikkerhetsvaktene kan oppfatte farlige situasjoner fort, slik at de kan gjøre noe med det! Denne metoden bør gå enda fortere enn hjelm scan.
+#####      - Counter for arbeidere scannet, samt om de hadde eller ikke hadde med våpen: Sjekker antall av arbeiderene som tar med farlig våpen på jobb.
+#####      - Tank Detector: Byggeplassen hadde tidligere opplevd problemer med en arbeider som tok med en tanks på jobb. Derfor ville de ha en alarm om dette skulle skje igjen..
+
+# Endepunkt 3: Sjekker om noen av arbeiderne har med seg substanser som vil gjøre arbeid på byggeplass farlig! ☠
+
+##### Dette endepunktet benytter seg også av label detection, men dette endepunktet sjekker om arbeiderene har med seg stoffer som alkohol og piller.
+##### Edruelighet er en viktig faktor for at arbeidet på byggeplassen skal foregå på en trygg og forutsigbar måte! Man må kunne forholde seg til kollegaene sine på en ordentlig måte.
+##### Metoden har fått inn noen metrics, disse er som følger: 
+#####      - Arraylist: Metoden holder en liste som legger inn alle de ulovlige substansene tatt med inn på arbeidet. Dette gjør at man kan finne ut av hvem som har med ulovlige midler, samt sjekke hva som trender av ulovlige substanser blant de ansatte. 
+
+# Cloudwatch dashbord
+
+##### Med disse endepunktene og dataen som blir samlet opp, har jeg laget dette dashbordet for enkel oversikt over viktige sikkerhetshensyn: 
+
+![image](https://github.com/SorensenMartin/PGR301Exam2021/assets/89515797/c9dbc4f0-e6b0-45ac-8d08-7278b46874d3)
+
 
 
 
