@@ -88,6 +88,10 @@ docker run -e AWS_ACCESS_KEY_ID=XXX -e AWS_SECRET_ACCESS_KEY=YYY -e BUCKET_NAME=
 ##### Under kan man se flowen 👇
 [![Java CI/CD to AWS ECR](https://github.com/SorensenMartin/PGR301Exam2021/actions/workflows/2021_ecr_publish.yml/badge.svg)](https://github.com/SorensenMartin/PGR301Exam2021/actions/workflows/2021_ecr_publish.yml)
 
+##### REF instanser av Apprunner oversteget: Jeg slettet min apprunner om det skulle være noe spørsmål om logger osv.
+![image](https://github.com/SorensenMartin/PGR301Exam2021/assets/89515797/1cc6843d-15f8-49bf-bd0b-94bbad2a2107)
+
+
 # Oppgave 4a
 ![image](https://github.com/SorensenMartin/PGR301Exam2021/assets/89515797/b1ee2c9f-8bc6-4bc0-b48e-40e141ca0e22)
 ## For denne oppgaven har jeg gjort om applikasjonen til å være en service mitt sikkerhetsfirma tilbyr ulike byggeplasser!
