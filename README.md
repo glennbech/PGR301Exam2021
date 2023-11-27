@@ -1,4 +1,4 @@
-# PGR301Exam2021
+![image](https://github.com/SorensenMartin/PGR301Exam2021/assets/89515797/b70eb964-3446-446f-bdd4-51d4d8382219)# PGR301Exam2021
 PGR301 Exam for kandidat 2021
 
 # Oppgave 1a
@@ -152,15 +152,35 @@ BUCKET_NAME=kjellsimagebucket kjellpy
 
 ![image](https://github.com/SorensenMartin/PGR301Exam2021/assets/89515797/1ed1d7d8-77b0-4c19-a9f7-5741a594de0b)
 
-### Her kan vi se gjennomsnittstiden på scan av hodeplagg. Her er det ikke satt opp noen tresholds, men det er fornuftig for bruker av dashbord og kunne se at scanningen ikke tar for lang tid, samt at scannen ikke henger seg opp eller andre tekniske problemer. 
+##### Her kan vi se gjennomsnittstiden på scan av hodeplagg. Her er det ikke satt opp noen tresholds, men det er fornuftig for bruker av dashbord og kunne se at scanningen ikke tar for lang tid, samt at scannen ikke henger seg opp eller andre tekniske problemer. 
 
 ### Alarm modulen for dashbordet. 
 
 ![image](https://github.com/SorensenMartin/PGR301Exam2021/assets/89515797/89f6c148-a856-4277-9bf5-dc067d126e55)
 
-### Her får vi en oversikt over et av de viktigste hjertesakene for ledelsen på arbeidsplassen: "Dette er en tanks fri sone!". Om det våpenscan endepunktet finner en tanks, vil den umidelbart stige over tresholdet og sende en alarm til ledelsen. Grafen viser også hvor ofte det har blitt funnet tanks, hvor en flant linje helt nederst er det en hver "dashboard-manager" ønsker og se. 
+##### Her får vi en oversikt over et av de viktigste hjertesakene for ledelsen på arbeidsplassen: "Dette er en tanks fri sone!". Om det våpenscan endepunktet finner en tanks, vil den umidelbart stige over tresholdet og sende en alarm til ledelsen. Grafen viser også hvor ofte det har blitt funnet tanks, hvor en flant linje helt nederst er det en hver "dashboard-manager" ønsker og se. 
 
 # Oppgave 4b
+
+##### For denne oppgaven valgte jeg som tidligere vist og lage en modul som ville kunne utløse en alarm om det kjørte en tanks inn på arbeidsplassen. Dette gjorde jeg for å sikre tryggheten på arbeidsplassen, samtidig som at dette var noe ledelsen spesefikt ønsket seg ( noe om en tidligere hendelse ref bildet )
+![image](https://github.com/SorensenMartin/PGR301Exam2021/assets/89515797/072a28a1-414a-467a-abe4-3236cdb4d1ca)
+
+##### For og få til dette måtte jeg gjøre ett par ting:
+
+#####      - Satte opp en modul i infra katalogen med en main tf som ser slik ut:
+![image](https://github.com/SorensenMartin/PGR301Exam2021/assets/89515797/0ea65a03-85e1-42d6-bfb6-77c63148921e)
+![image](https://github.com/SorensenMartin/PGR301Exam2021/assets/89515797/f7a2f381-739d-4d40-b482-e50a4813fb6f)
+
+#####      - I modulen er det mulighet for å endre en del variabler for å tilpasse etter ønsket, for å sikre god gjenbrukbarhet.
+![image](https://github.com/SorensenMartin/PGR301Exam2021/assets/89515797/2ee35705-e670-4055-a9b6-e7e93d8678eb)
+##### Sett modulen inn i din hoved main.tf i terraform katalogen, kopier over alarm_cloud_module, og endre på alle elementene under source for å gjennbruke modulen.
+
+##### Etter at modulen var tilgjengelig, og det ble skannet for våpen på arbeidsplassen oppsto det ett treff. Dette førte da til at en varslingsmail ble sendt ut å sikkerhetsteamet fikk kontroll på hendelsen. 
+![image](https://github.com/SorensenMartin/PGR301Exam2021/assets/89515797/20d9eff2-edb6-458a-b9a6-f11cb327d872)
+
+# Oppgave 5a 
+
+
 
 
 
