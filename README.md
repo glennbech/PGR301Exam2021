@@ -124,7 +124,7 @@ docker run -e AWS_ACCESS_KEY_ID=XXX -e AWS_SECRET_ACCESS_KEY=YYY -e BUCKET_NAME=
 
 # Cloudwatch dashbord
 
-##### Med disse endepunktene og dataen som blir samlet opp, har jeg laget dette dashbordet for enkel oversikt over viktige sikkerhetshensyn: 
+##### Med disse endepunktene og dataen som blir samlet opp, har jeg laget dette dashbordet for enkel oversikt over viktige sikkerhetshensyn. De ulike elementene kan slettes/endres via dashboard.tf: 
 
 ![image](https://github.com/SorensenMartin/PGR301Exam2021/assets/89515797/c9dbc4f0-e6b0-45ac-8d08-7278b46874d3)
 
