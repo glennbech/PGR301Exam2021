@@ -6,9 +6,9 @@ PGR301 Eksamen for kandidat 2021
 ##### For at workflowen laget til denne oppgaven skal fungere hos andre, må man lage AWS access keys i IAM og legge dem til som secrets i sitt eget repo. Da under navnene:
 ##### - AWS_ACCESS_KEY_ID og AWS_SECRET_ACCESS_KEY
 ##### Det kan også være en god ide å endre navn på bøtten i denne delen av flowen til dette eksemplet eller egen bucket:
-      name: Deploy SAM Application
-      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-      run: sam deploy --no-confirm-changeset --no-fail-on-empty-changeset --stack-name kand2021 --capabilities CAPABILITY_IAM --region eu-west-1 --resolve-s3
+- name: Deploy SAM Application
+- if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+- run: sam deploy --no-confirm-changeset --no-fail-on-empty-changeset --stack-name kand2021 --capabilities CAPABILITY_IAM --region eu-west-1 --resolve-s3
 ##### --- --s3-bucket kand2021imagebucket 🍎 +++ --resolve-s3 🍏
 
 [![SAM Build and Deploy if Main](https://github.com/SorensenMartin/PGR301Exam2021/actions/workflows/2021_sam.yml/badge.svg)](https://github.com/SorensenMartin/PGR301Exam2021/actions/workflows/2021_sam.yml)
@@ -80,9 +80,9 @@ docker run -e AWS_ACCESS_KEY_ID=XXX -e AWS_SECRET_ACCESS_KEY=YYY -e BUCKET_NAME=
 ##### La også til i main.tf endringer for backend og aws terraform provider. Brukte her bucket fra tidligere øvinger pgr301-2021-terraform-state for å lagre min state. 
 
 ### For at workflowen skal fungere på fork, er det noen ting man må gjøre. 
-      - Som i oppgave 1a er det eneste som er uunngåelig at en fork må inneholde egne aws_access_key_id og aws_secret_access_key. 
-      - Så lenge disse nøklene gir samme tilgang på aws som de jeg har blitt tildelt, skal det ikke være nødvendig å endre noe annet for å kjøre workflowen.
-      - Om man vil, kan man alltid endre variablene i variables.tf for å bruke sitt eget ECR, Bucket, Apprunner eller annet. Men det jeg har laget fungerer da altså greit for andre med samme rettigheter.
+- Som i oppgave 1a er det eneste som er uunngåelig at en fork må inneholde egne aws_access_key_id og aws_secret_access_key. 
+- Så lenge disse nøklene gir samme tilgang på aws som de jeg har blitt tildelt, skal det ikke være nødvendig å endre noe annet for å kjøre workflowen.
+- Om man vil, kan man alltid endre variablene i variables.tf for å bruke sitt eget ECR, Bucket, Apprunner eller annet. Men det jeg har laget fungerer da altså greit for andre med samme rettigheter.
 
 
 ##### Under kan man se flowen 👇
