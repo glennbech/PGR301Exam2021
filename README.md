@@ -185,6 +185,7 @@ En definisjon kan være: Automatisk bygging og testing av kode ved push til et r
 Fordeler og ulemper ved bruk av CI i et utviklingsprosjekt, både som team og alene: 
 
 -	Fordeler:
+
 -	Kontinuerlig testing og oppdaging av feil tidlig: Med en pipeline sørger systemet for at alle oppdateringer av en applikasjon blir testet, på denne måten kan man               raskt oppdage og rette opp i Bugs uten at systemet oppdaterer seg med disse feilene. Pipelinen er også flink til å lokalisere nøyaktig hvor feilen skjer, noe som               gjør feilsøking og fiksing mye enklere. 
 -	Automatisering av hverdagslige oppgaver: Oppgaver som egentlig bare blir rutine for programmerer slik som bygging og testing blir tatt hånd om av systemet, slik at             de kan fokusere på ny god kode og funksjonalitet. 
 -	Konflikthåndtering: Med hyppig kodeoppdatering, vil det minske sannsynligheten for at to utviklere som arbeider på samme kode får konfliktproblemer, noe som sørger             for en mer smidig utvikling.  
@@ -193,6 +194,7 @@ Fordeler og ulemper ved bruk av CI i et utviklingsprosjekt, både som team og al
 
 
 -	Ulemper: Det er greit å sette lys på at ingen utviklings prinsipper er uten mangler eller problemer.
+
 -	Oppstart: Og sette opp et godt å robust pipeline /CI system kan være komplisert. Mye ressurser vil måtte gå til dette i oppstartfasen av ett prosjekt. 
 -	Ressursbruk: Et CI system kan ofte kreve mye av en server, som ikke ville vært belastet på samme måte ved andre prinsipper.
 -	Tekstkvalitet ekstra viktig: God kunnskap i teamet om det å skrive gode tester er viktig. Svake tester i pipeline kan føre til falske positiver og feil som sniker              seg igjennom systemet. Det er også viktig at noen på teamet jobber med å oppdatere disse testene til å holde stand med resten av kodebasen. Menneskelige ressurser kreves       også for å sørge for at CI-systemet blir vedlikeholdt på en god måte. 
@@ -203,6 +205,54 @@ En god feedback loop med tilbakemelding av action sprossesene er også essensiel
 Det er viktig og se CI som en helhet også. Det å implementere CI med CD er essensielt. Der CI har ansvar for testing og bygging, har CD (Kontinuerlig Levering) ansvar for at denne koden raskt og smertefritt blir levert til blant annet produksjonsmiljøet. Dette har vi sett på i denne oppgaven, hvor både bygging og push til AWS sørviser skjer ved verdt push. Her er også publiseringen avhengig av at byggingen faktisk ikke feiler. Her er kanskje sleve CI delen av programmet litt tynn på testing 😉 I et team som jobber under disse prinsippene vil forhåpentligvis kommunikasjonen og forståelsen for hverandre blant teamet god, samt at avstanden fra ny kode til produksjon vil være kort!
 
 # Oppgave 5b
+
+### Scrum vs Devops
+Får å forstå fordelene og ulempene ved bruk av to ulike metodikker innenfor programvareutvikling er det først viktig å understreke hva de ulike metodenes kjennetegn og hovedtrekk er.
+### Scrum/Smidig: 
+Scrum er noe jeg har kjennskap til gjennom prosjektoppgaven forrige semester. Derfor har jeg litt erfaring her med tanke på hvordan det er å jobbe i ett team i praksis. Scrum er basert på «Agile Manifesto» Her blir viktigheten av fleksibilitet, kundesamarbeid og tilpasningsevne prioritert. Det å reagere på endring effektivt er det viktigste elementet for vellykket utvikling. 
+Scrum handler om korte, iterative utviklingssykluser, kjent som sprinter. Disse sprintene kan variere i lengde, men typiske sprinter er fra en til fire uker. Under planlegging av sprinten setter man opp ulike punkter og mål, hvor fokuset er å fullføre en bestemt del av en leveranse. Etter sprinten er over er da målet at denne planlagte funksjonaliteten skal være leverbar og kvalitetsmessig sterk. I løpet av sprinten er det noen ritualer som er essensielle for å sikre flyt og fremdrift. Daily Standup: Korte daglige møter for å diskutere arbeid, eventuelle problemer og progognosen for sprinten. Sprint planning, review og retrospective. Dette er møter hvor man planlegger sprinten, går igjennom hva mål som er oppnådd etter sprint, og diskuterer/reflekterer over sprinten for å finne ut av hva som var bra og hva som kan forbedres. 
+Ett utviklingsteam som arbeider med Scrum som metode, deles opp i ulike roller. Disse rollene er som følger: 
+-	Produktteier: Ansvarlig for hva som er prosjektets mål. Prosjekteier skal veilede resten av teamet når det kommer til ønskelige funksjoner og prioriteringer under              prosjektets levetid. 
+-	Scrummaster: På mange måter en lagleder eller kaptein. Scrummaster har ansvar for å kommunisere med produkteier, sette opp å lede planlegging av sprinter, samt å passe         på at alle i teamet følger prinsippene for scrum prosessen og at alle i teamet har en de kan komme til med sine tanker eller problemer. 
+-	Utviklerlaget: Teamet som jobber med å gjennomføre sprinten, som selv velger sin workload og hva de mener de er kapable til å gjennomføre av de ulike målene for                sprinten. 
+Noen styrker og svakheter ved scrum: 
+-	Styrker:
+
+-	Selvorganisering: Alle teammedlemmene for mulighet til å selv definere sine roller og ønsker, noe som gjør prosjektet mer engasjerende og utvikleren kan ta eierskap over       sine roller og kode. 
+-	Fleksibilitet: Ved prosjekter hvor kravene endres er scrum effektivt. Det er jevnlig diskusjon og revisjon om hva som skal gjøres, dette sørger for effektiv tilpassing         av mål.’
+-	Forbedringsmuligheter: Via de ulike reviewen, får man som et team overblikk over hva som fungere, og hva som kanskje ikke fungerer fullt så bra. Dette sørger for at            fokuset alltid ligger på kontinuerlig forbedring og læring av tidligere sprinter. 
+
+-	Svakheter: 
+
+-	Krever dyktig produktteier: Det meste av fokuset for de ulike sprintene og teamet som en helhet blir satt av produkteier. Om produkteier er diffus og uklar i sin visjon,       kan det føre til ueffektive sprinter med dårlig fokus.
+-	Godt team: Det må være god kjemi og dynamikk i ett team som skal arbeide med scrum. Om flere av deltakerne ikke spiller på lag, har dårlig kommunikasjon eller rett og          slett viser motvilje til å utføre scrum vil effektiviteten av metodikken krasjlande. 
+-	Oppfattelse av møter: Metoden fremmer sterk kommunikasjon. Dette gjennom daglige møter og gjennomgang av de ulike sprintfasene. For en gruppe som ikke er vant til denne        måten å kommunisere på kan det virke unødvendig og overveldende. 
+
+### Devops: 
+Devops har jeg gått smått innpå i oppgave 5A, og dette er selve metodikken dette faget baserer seg på. Devops som prinsipp handler om å kutte ut avstanden mellom utvikler teamet og drifts teamet. Man kan dra paralleller til LEAN prinsippet, og strømlinje formet utvikling samt eliminering av sløsing blir prioritert. Det å skape en kultur for samarbeid og delt ansvar for sluttprodukt er essensielt for å implementere Devops som prinsipp i en bedrift, avstanden mellom de ulike lagene blir minsket. For å oppnå dette kreves det da planlegging mellom gruppene for hvordan hele prosessen for integrering og produksjon skal utføres, da via automatiserte prosesser som tidligere beskrevet og utført i denne eksamen. CI/CD, som jeg referer til oppgave A for å lese mer om, er ett av hoved elementene i Devops som kultur på arbeidsplassen. Devops som prinsipp kan og har revolusjonert måten programvare blir laget i sinn helhet på. En holistisk tilnærming til livssyklusen av programvare sikrer effektivitet, kvalitet og lagånd i en bedrift 
+Det fokuserer på bruk av ulike verktøy for å automatisere helheten i prosjektet. Ett eksempel på et slikt verktøy kan være docker som er blitt brukt hyppig igjennom dette faget. Infrastruktur som kode er også et viktig element som sørger for at verktøy som for eksempel terraform sørger for at infrastruktur og vedlikehold kan foregå automatisert.  
+Noen styrker og svakheter ved Devops: 
+-	Styrker: 
+
+-	Leveringen optimaliserer: Når de ulike lagene jobber sammen, i samspill med at de ulike stegene i utviklingen automatiseres, blir veien til distribusjon forkortet              betydelig.  
+-	CI/CD for kvalitet- og stabilitetssikring: Som nevnt i oppgave a: Kontinuerlig integrering sørger for stabil og tidlig oppdagelse av feil. Dette hjelper også for å             opprettholde god kvalitet på kode. 
+-	Effektivisering: Automatisering av monotone oppgaver frigjør ulike medlemmer av teamene til å arbeide med andre viktige oppgaver. 
+
+-	Svakheter: 
+
+-	Kompleksitet: Det å sette opp en struktur som fremmer Devops kan være krevende. Det å velge viktige verktøy for ulike oppgaver og integrere dem i prosjektet kan være           utfordrende. Det å sette opp å automatisere CI/CD kan også være komplekst, og kan kreve hyppig gjennomgang av struktur og tester. 
+-	Kultur: Samme som med scrum, krever Devops en endring i kulturen på en arbeidsplass. Dette kan være krevende i firmaer og organisasjoner med satte, faste rutiner og            arbeidsmetoder. 
+-	Sikkerhet: Hyppighetene av leveransen samt utlevering av sensitiv informasjon til CI/CD kan fort føre til problemer med tanke på sikkerhet. 
+
+### Så hvilken metode bør vi bruke?
+Man kan tydelig se at både scrum og Devops har som mål å effektivisere hastigheten på leveranse og øke kvaliteten på sluttproduktet. De har allikevel ulike tilnærminger når det kommer til å nå disse målene. 
+Scrum fokuserer på dynamikken i et team og en iterativ utviklingsprosess. Det er fokus på tilpassing og endring i møte med ulike oppgaver. Det forholder seg også tett til kunden å deres behov.  Devops foksuerer mer på hele livssyklusen til en applikasjon, og samspillet innad i flere ulike lag, både drift og utvikling, innad i en bedrift for å optimalisere denne syklusen. Automatisering av oppgaver er essensielt. 
+Når det kommer til leveransetempo, fokuserer scrum på raske iterasjoner og feedback for forbedring. Dette øker hastigheten på leveranse noe kontra andre metodikker for programvareutvikling. Devops sitt fokus på automatisering øker til sammenligning leveransetempo kraftig. Veien fra utviklingsfasen til leveranse blir kort vi CI/CD. Om målet bare er rask leveranse, vil Devops være det optimale valget om teamet er villig til å legge ned grunnarbeidet som kreves. 
+Når det kommer til programkvalitet er det også ulike tilnærminger, men her blir resultatet mer likt. Scrum fokuserer på feedback og revisjon av arbeidet utført i sprinter. Dette sørger for en sterk tilpasningsevne etter som hva som funker. Det at det daglig diskuteres gir også mer strukturert kode med god kodestandard og likhet. Devops forbedrer kodekvaliteten mer igjennom kontinuerlig testing og overvåking for å sile ut ineffektive metoder og feil. Begge sørger for bedre kodekvalitet, med hver sin styrke. 
+Fordelaktige situasjoner for de ulike metodene:
+Et eksempel på en fordelaktig situasjon hvor bruken av scrum vil være gunstig kan være en start-up. I en bedrift med stadig endrende produktkrav basert på kunders ønsker og markedet vil scrum sin fleksibilitet i møte med endringer være ideelt. Om start-up bedriften opererer i en bransje med endrende markedsbehov kan denne metoden være smart å integrere i teamet. Vi kan konkludere med at dynamiske prosjektmiljøer er spesielt godt egnet for å ta i bruk scrum som metodikk. 
+For Devops kan en fordelaktig situasjon være en etablert, stor bedrift på nett. Om vi tar google som eksempel, vil viktigheten av kontinuerlig oppdatering og testing være essensielt. Samtidig som dette skjer, må man sørge for at nedetiden på nettsiden blir minimal. Devops sitt fokus på automatisering av integrering og testing er derfor i et slikt miljø optimalt.
+For å konkludere kan vi si at både Devops og Scrum har sine fordeler og ulemper, selv om målet kan sies og være det samme. Begge metodikkene tar for seg kompleksiteten i programvareutvikling. Fokuset er på å bryte ned prosesser i mer menneskelig håndterbare biter for å øke kvaliteten på produktet. De har forskjellige stryker, som kan komplimentere hverandre. Valget av hvilken metode man vil benytte seg av må tas i sammenheng med kravene for prosjektet man setter ut på. Det er også mulig å kombinere bruken av disse metodene for å dra nytte av begges fordeler i utviklingsprosessen. 
 
 
 
