@@ -246,12 +246,16 @@ Noen styrker og svakheter ved Devops:
 
 ### Så hvilken metode bør vi bruke?
 Man kan tydelig se at både scrum og Devops har som mål å effektivisere hastigheten på leveranse og øke kvaliteten på sluttproduktet. De har allikevel ulike tilnærminger når det kommer til å nå disse målene. 
+
 Scrum fokuserer på dynamikken i et team og en iterativ utviklingsprosess. Det er fokus på tilpassing og endring i møte med ulike oppgaver. Det forholder seg også tett til kunden å deres behov.  Devops foksuerer mer på hele livssyklusen til en applikasjon, og samspillet innad i flere ulike lag, både drift og utvikling, innad i en bedrift for å optimalisere denne syklusen. Automatisering av oppgaver er essensielt. 
+
 Når det kommer til leveransetempo, fokuserer scrum på raske iterasjoner og feedback for forbedring. Dette øker hastigheten på leveranse noe kontra andre metodikker for programvareutvikling. Devops sitt fokus på automatisering øker til sammenligning leveransetempo kraftig. Veien fra utviklingsfasen til leveranse blir kort vi CI/CD. Om målet bare er rask leveranse, vil Devops være det optimale valget om teamet er villig til å legge ned grunnarbeidet som kreves. 
 Når det kommer til programkvalitet er det også ulike tilnærminger, men her blir resultatet mer likt. Scrum fokuserer på feedback og revisjon av arbeidet utført i sprinter. Dette sørger for en sterk tilpasningsevne etter som hva som funker. Det at det daglig diskuteres gir også mer strukturert kode med god kodestandard og likhet. Devops forbedrer kodekvaliteten mer igjennom kontinuerlig testing og overvåking for å sile ut ineffektive metoder og feil. Begge sørger for bedre kodekvalitet, med hver sin styrke. 
-Fordelaktige situasjoner for de ulike metodene:
+
+##### Fordelaktige situasjoner for de ulike metodene:
 Et eksempel på en fordelaktig situasjon hvor bruken av scrum vil være gunstig kan være en start-up. I en bedrift med stadig endrende produktkrav basert på kunders ønsker og markedet vil scrum sin fleksibilitet i møte med endringer være ideelt. Om start-up bedriften opererer i en bransje med endrende markedsbehov kan denne metoden være smart å integrere i teamet. Vi kan konkludere med at dynamiske prosjektmiljøer er spesielt godt egnet for å ta i bruk scrum som metodikk. 
 For Devops kan en fordelaktig situasjon være en etablert, stor bedrift på nett. Om vi tar google som eksempel, vil viktigheten av kontinuerlig oppdatering og testing være essensielt. Samtidig som dette skjer, må man sørge for at nedetiden på nettsiden blir minimal. Devops sitt fokus på automatisering av integrering og testing er derfor i et slikt miljø optimalt.
+
 For å konkludere kan vi si at både Devops og Scrum har sine fordeler og ulemper, selv om målet kan sies og være det samme. Begge metodikkene tar for seg kompleksiteten i programvareutvikling. Fokuset er på å bryte ned prosesser i mer menneskelig håndterbare biter for å øke kvaliteten på produktet. De har forskjellige stryker, som kan komplimentere hverandre. Valget av hvilken metode man vil benytte seg av må tas i sammenheng med kravene for prosjektet man setter ut på. Det er også mulig å kombinere bruken av disse metodene for å dra nytte av begges fordeler i utviklingsprosessen. 
 
 
