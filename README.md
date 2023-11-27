@@ -158,7 +158,7 @@ docker run -e AWS_ACCESS_KEY_ID=XXX -e AWS_SECRET_ACCESS_KEY=YYY -e BUCKET_NAME=
 
 ![image](https://github.com/SorensenMartin/PGR301Exam2021/assets/89515797/89f6c148-a856-4277-9bf5-dc067d126e55)
 
-##### Her får vi en oversikt over et av de viktigste hjertesakene for ledelsen på arbeidsplassen: "Dette er en tanks fri sone!". Om det våpenscan endepunktet finner en tanks, vil den umiddelbart stige over tresholdet og sende en alarm til ledelsen. Grafen viser også hvor ofte det har blitt funnet tanks, hvor en flant linje helt nederst er det enhver "dashboard-manager" ønsker og se. 
+##### Her får vi en oversikt over et av de viktigste hjertesakene for ledelsen på arbeidsplassen: "Dette er en tanks fri sone!". Om det våpenscan endepunktet finner en tanks, vil den umiddelbart stige over tresholdet og sende en alarm til ledelsen. Grafen viser også hvor ofte det har blitt funnet tanks, hvor en flant linje helt nederst er det enhver "dashboard-manager" ønsker og se. Selvom det er en egen widget, ligger det også her en henvisning til alarmen, den viser om alarmen er utløst eller ikke. I denne situasjonen ser vi at det har blitt oppdaget en tank, og alarmen har blitt utløst. 
 
 # Oppgave 4b
 
