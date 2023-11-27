@@ -128,6 +128,40 @@ BUCKET_NAME=kjellsimagebucket kjellpy
 
 ![image](https://github.com/SorensenMartin/PGR301Exam2021/assets/89515797/c9dbc4f0-e6b0-45ac-8d08-7278b46874d3)
 
+### La oss gå dypere inn på hvert enkelt element i dashbordet. 
+
+### Substanser tatt in på arbeidsplassen. 
+
+![image](https://github.com/SorensenMartin/PGR301Exam2021/assets/89515797/e74f6070-05b6-4ea5-9232-f0fb8ee67033)
+
+##### Her kan vi se de fire ulike substansene jeg per dags dato tracker. Disse er fordelt utover i søyler for å gi et raskt og effektivt innsyn i hvilke substanser som er de mest popuælere på arbeidsplassen. Her ser vi at det trender mot bruk av piller, og HR kan sette igang med forebyggende tiltak rundt dette. 
+
+### Fordeling av våpen blant ansatte.
+
+![image](https://github.com/SorensenMartin/PGR301Exam2021/assets/89515797/1c21ce27-7116-468a-9e85-3cc26b218409)
+
+##### Her kan vi se at 25% av de ansatte har tatt med seg våpen inn på arbeidsplassen. Dette gir en indikasjon til ledelsen om hvem som skal få lov til å være med videre som ansatt, samt hvem som må gå. Her kan man da over tid se trender avhening av hvem man ansetter og sparker (noen vil si at 25% er noe høyt på en arbeidsplass 🙂)
+
+### Våpenscan tidsbruk.
+
+![image](https://github.com/SorensenMartin/PGR301Exam2021/assets/89515797/f8c78d84-ba6b-43f1-b0cb-89e48a3eff4b)
+
+##### For at sikkerheten på arbeidsplassen skal kunne arbeide opptimalt, er det viktig at selve scannen for våpen skjer hurtig. Derfor har vi et meter som registrer maksimum tid på scan siste tre timer, med noen tresholds. Helst vil vi se at det tar under 5 sekunder og scanne, vi aksepterer under 12 sekunder, men ved over 12 sekunder må vi gjøre endringer/forbedringer på applikasjonen slikk at sikkerthespersonelle kan være på område før våpen kan bli brukt med ondsinnede hensikter.
+
+### Timer for sjekk av hjelm
+
+![image](https://github.com/SorensenMartin/PGR301Exam2021/assets/89515797/1ed1d7d8-77b0-4c19-a9f7-5741a594de0b)
+
+### Her kan vi se gjennomsnittstiden på scan av hodeplagg. Her er det ikke satt opp noen tresholds, men det er fornuftig for bruker av dashbord og kunne se at scanningen ikke tar for lang tid, samt at scannen ikke henger seg opp eller andre tekniske problemer. 
+
+### Alarm modulen for dashbordet. 
+
+![image](https://github.com/SorensenMartin/PGR301Exam2021/assets/89515797/89f6c148-a856-4277-9bf5-dc067d126e55)
+
+### Her får vi en oversikt over et av de viktigste hjertesakene for ledelsen på arbeidsplassen: "Dette er en tanks fri sone!". Om det våpenscan endepunktet finner en tanks, vil den umidelbart stige over tresholdet og sende en alarm til ledelsen. Grafen viser også hvor ofte det har blitt funnet tanks, hvor en flant linje helt nederst er det en hver "dashboard-manager" ønsker og se. 
+
+# Oppgave 4b
+
 
 
 
