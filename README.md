@@ -179,6 +179,29 @@ docker run -e AWS_ACCESS_KEY_ID=XXX -e AWS_SECRET_ACCESS_KEY=YYY -e BUCKET_NAME=
 ![image](https://github.com/SorensenMartin/PGR301Exam2021/assets/89515797/20d9eff2-edb6-458a-b9a6-f11cb327d872)
 
 # Oppgave 5a
+##### Kontinuerlig Integrasjon.
+Kontinuerlig integrasjon handler om at kodeendringer, gjerne fra flere ulike utviklere på ett team, regelmessig og automatisk blir lastet opp og integrert i ett delt github repository eller lignende. Dette er ett prinsipp i programvareutvikling som sørger for at man enklere kan opprettholde en høy kodekvalitet hvor alle arbeider mot det samme målet. CI som prinsipp handler også om å fremme nettopp det med hyppige pushes til et repo i et utviklingsteam, slik at man unngår problemer med integrering i størst mulig grad. 
+En definisjon kan være: Automatisk bygging og testing av kode ved push til et repository. CI sørger for tidlig indentifisering av problemer samt sikre kontinuerlig og høy kodestandard på prosjektet ved å fremme en kultur for hyppig integrering. 
+Fordeler og ulemper ved bruk av CI i et utviklingsprosjekt, både som team og alene: 
+
+      -	Fordeler:
+      -	Kontinuerlig testing og oppdaging av feil tidlig: Med en pipeline sørger systemet for at alle oppdateringer av en applikasjon blir testet, på denne måten kan man               raskt oppdage og rette opp i Bugs uten at systemet oppdaterer seg med disse feilene. Pipelinen er også flink til å lokalisere nøyaktig hvor feilen skjer, noe som               gjør feilsøking og fiksing mye enklere. 
+      -	Automatisering av hverdagslige oppgaver: Oppgaver som egentlig bare blir rutine for programmerer slik som bygging og testing blir tatt hånd om av systemet, slik at             de kan fokusere på ny god kode og funksjonalitet. 
+      -	Konflikthåndtering: Med hyppig kodeoppdatering, vil det minske sannsynligheten for at to utviklere som arbeider på samme kode får konfliktproblemer, noe som sørger             for en mer smidig utvikling.  
+      -	Samarbeid: Alt handler ikke om det tekniske. Hyppig deling av nye kodesnutter kan hjelpe med å skape diskusjon i et team, hvor alle kan komme med sine                          tilbakemeldinger. 
+
+
+      -	Ulemper: Det er greit å sette lys på at ingen utviklings prinsipper er uten mangler eller problemer.
+      -	Oppstart: Og sette opp et godt å robust pipeline /CI system kan være komplisert. Mye ressurser vil måtte gå til dette i oppstartfasen av ett prosjekt. 
+      -	Ressursbruk: Et CI system kan ofte kreve mye av en server, som ikke ville vært belastet på samme måte ved andre prinsipper.
+      -	Tekstkvalitet ekstra viktig: God kunnskap i teamet om det å skrive gode tester er viktig. Svake tester i pipeline kan føre til falske positiver og feil som sniker              seg igjennom systemet. Det er også viktig at noen på teamet jobber med å oppdatere disse testene til å holde stand med resten av kodebasen. 
+      -	Sikkerhet: Tar med en liten henvisning til det med sikkerhet. Pipelinen må ofte ha tilgang på sensitiv informasjon. Om man gjør feil så kan det eksempelvis hende               at noen med dårlige intensjoner får tilgang på ett AWS Miljø som kan koste Noen dyrt :)
+      
+I praksis så kan et team bruke CI via Github på samme måte som vi har gjort det i dette faget. Sette opp en github actions med ulike oppgaver. Dette kan være alt fra bygg på ulike branches og ren testing. Vi har også sett på det med pull-request. Effektiv implementering av dette kan sørge for at all kode blir gjennomgått av for eksempel en lagleder som kan sørge for at all koden er konsistent og god før den blir lagt til på produksjon/main. 
+En god feedback loop med tilbakemelding av action sprossesene er også essensielt for å sørge for en smidig håndtering av eventuelle feil i en av prosessene som de ulike actions filene kjører. God CI handler også om å benytte seg godt av nettopp av ulike branches man kan jobbe på. Dette kan være main/produksjon, ulike funksjoner som har hver sin branch, ett for utvikling, ett for å teste tester etc. 
+Det er viktig og se CI som en helhet også. Det å implementere CI med CD er essensielt. Der CI har ansvar for testing og bygging, har CD (Kontinuerlig Levering) ansvar for at denne koden raskt og smertefritt blir levert til blant annet produksjonsmiljøet. Dette har vi sett på i denne oppgaven, hvor både bygging og push til AWS sørviser skjer ved verdt push. Her er også publiseringen avhengig av at byggingen faktisk ikke feiler. Her er kanskje sleve CI delen av programmet litt tynn på testing 😉 I et team som jobber under disse prinsippene vil forhåpentligvis kommunikasjonen og forståelsen for hverandre blant teamet god, samt at avstanden fra ny kode til produksjon vil være kort!
+
+# Oppgave 5b
 
 
 
