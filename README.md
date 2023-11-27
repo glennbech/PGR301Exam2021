@@ -1,7 +1,7 @@
 # PGR301Exam2021
 PGR301 Eksamen for kandidat 2021
 
-## Oppgave 1a
+# Oppgave 1a
 
 ##### For at workflowen laget til denne oppgaven skal fungere hos andre, må man lage AWS access keys i IAM og legge dem til som secrets i sitt eget repo. Da under navnene:
 ##### - AWS_ACCESS_KEY_ID og AWS_SECRET_ACCESS_KEY
@@ -13,7 +13,7 @@ PGR301 Eksamen for kandidat 2021
 
 [![SAM Build and Deploy if Main](https://github.com/SorensenMartin/PGR301Exam2021/actions/workflows/2021_sam.yml/badge.svg)](https://github.com/SorensenMartin/PGR301Exam2021/actions/workflows/2021_sam.yml)
 
-###### Endringer gjort for å tilpasse koden til Kjell: 
+##### Endringer gjort for å tilpasse koden til Kjell: 
 - Endret hardkoding i app.py til å lese BUCKET_NAME
 - Oppdatert template.yaml sin target bucket, samt lagt til noen policies for tilganger som trengtes for dette
 - Verifisert at det funker for meg i mitt Cloud9-miljø
@@ -24,7 +24,7 @@ PGR301 Eksamen for kandidat 2021
 #### Her ser vi svaret etter at jeg la til et bilde fra en byggeplass (veldig relevant :) ) i min S3 Image bucket.
 ![image](https://github.com/SorensenMartin/PGR301Exam2021/assets/89515797/a39d204e-be4c-4ec2-a273-1c5b2ac45f83)
 
-## Oppgave 1b
+# Oppgave 1b
 
 ##### Det var for så vidt ganske rett frem å lage Dockerfilen, men hadde noen problemer da det kom til å vise resultatene. Fant ut at dette var på grunn av typen filer i kjellsimagebucket. Dette ble også adressert på Canvas, men ser ut som at filene har klart å lure seg inn igjen på ett eller annet vis 😖
 
@@ -37,7 +37,7 @@ docker run -e AWS_ACCESS_KEY_ID=XXX -e AWS_SECRET_ACCESS_KEY=YYY -e BUCKET_NAME=
 #### Result: 
 ![image](https://github.com/SorensenMartin/PGR301Exam2021/assets/89515797/111fccc0-431d-4371-8dde-f02ab98f6642)
 
-## Oppgave 2a 
+# Oppgave 2a 
 
 ##### Fant ikke Maven i mitt Cloud9-miljø til å starte med, så måtte installere manuelt fra nettsiden til Apache Maven. 
 ![image](https://github.com/SorensenMartin/PGR301Exam2021/assets/89515797/58d1de31-4833-4f53-98c4-c3e2d74d4efd)
@@ -60,14 +60,14 @@ docker run -e AWS_ACCESS_KEY_ID=XXX -e AWS_SECRET_ACCESS_KEY=YYY -e BUCKET_NAME=
 # Oppgave 3a
 
 ##### Endringer gjort på terraform koden til Kjell er som følger:
-###### Hardkoding av service name byttet til noe passende for meg: "edu-apprunner-service-kand-2021"
-###### Alle "hardkodede" verdier har blitt byttet ut med var.ettellerannent slik at man enkelt kan endre variabler i egen variables.tf fil.
+##### Hardkoding av service name byttet til noe passende for meg: "edu-apprunner-service-kand-2021"
+##### Alle "hardkodede" verdier har blitt byttet ut med var.ettellerannent slik at man enkelt kan endre variabler i egen variables.tf fil.
 
-## Søkte i dokumentasjonen og fant dette: 
+### Søkte i dokumentasjonen og fant dette: 
 
 ![image](https://github.com/SorensenMartin/PGR301Exam2021/assets/89515797/9c73da3e-a3d6-4af5-98b1-c78064f23453)
 
-## Endret da min konfigurasjon etter denne malen, noe som ser ut til å ha funket fint: 
+### Endret da min konfigurasjon etter denne malen, noe som ser ut til å ha funket fint: 
 
 ![image](https://github.com/SorensenMartin/PGR301Exam2021/assets/89515797/70a0dfc8-11a9-4769-8183-8354abfbf269) 
       
@@ -99,12 +99,14 @@ docker run -e AWS_ACCESS_KEY_ID=XXX -e AWS_SECRET_ACCESS_KEY=YYY -e BUCKET_NAME=
 ##### Har for denne oppgaven lagt til to nye endepunkter. Begge bruker rekognition sin label detection, men til ulike hensikter. Under går jeg igjennom alle endepuktene i applikasjonen, hva de gjør, hvordan data som blir registrert og lagret som metrics i cloudwatch, og begrunnelse rundt alle valgene.
 ### OBS! Er også beskrivelse rundt valg og de ulike endepunktene i RekognitionController.java!!! 
 
+
 # Endepunkt 1: Sjekker om arbeiderene har tatt på seg hjelmen sin før de går inn på byggeplassen!
 
 ##### Dette endepunktet er for det mest uendret funksjonelt, men har byttet ut munnbeskyttelse med hjelm for det den skal søke etter. 
 ##### Metoden har fått inn noen metrics, disse er som følger: 
 #####      - Timer: Registrerer data på hvor lang tid API kallet bruker på å få tilbake de ferdig sjekkede bildene.
 #####      - Sjekker filene i bucket: Sjekker om noen av bildene tatt av sikkerhetskameraet er korrupte, som gir en indikasjon på helsen til hele systemt.
+
 
 # Endepunkt 2: Sjekker om noen av arbeiderene prøver å ta meg seg våpen inn på arbeidsplassen!
 
