@@ -77,6 +77,6 @@ module "cloudwatch_alarm" {
   prefix       = "RekognitionController"
   namespace    = "2021ConstructionSecurityCo"
   metric_name  = "tank-detected-metric.count"
-  threshold    = 1
+  threshold    = 0.1
   alarm_email  = "martinsorensen96@gmail.com"
 }

@@ -11,8 +11,8 @@ resource "aws_cloudwatch_dashboard" "main" {
       "x": 6,
       "properties": {
           "metrics": [
-              [ "${var.namespace}", "security-items-scanned.count", "bucket", "kand2021imagebucket", { "region": "eu-west-1", "label": "Worker without weapons", "color": "#98df8a" } ],
-              [ "${var.namespace}", "safe-workers-detected.count", "bucket", "kand2021imagebucket", { "region": "eu-west-1", "label": "Workers with weapons", "color": "#8c564b" } ]
+              [ "${var.namespace}", "safe-workers-detected.count", "bucket", "kand2021imagebucket", { "region": "eu-west-1", "label": "Worker without weapons", "color": "#98df8a" } ],
+              [ "${var.namespace}", "security-items-detection-count.count", "bucket", "kand2021imagebucket", { "region": "eu-west-1", "label": "Workers with weapons", "color": "#8c564b" } ]
           ],
           "view": "pie",
           "region": "eu-west-1",
