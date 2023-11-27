@@ -71,3 +71,12 @@ resource "aws_iam_role_policy_attachment" "attachment" {
   role       = aws_iam_role.role_for_apprunner_service.name
   policy_arn = aws_iam_policy.policy.arn
 }
+
+module "cloudwatch_alarm" {
+  source       = "./alarm_cloud_module"
+  prefix       = "RekognitionController"
+  namespace    = "2021ConstructionSecurityCo"
+  metric_name  = "tank-detected-metric.count"
+  threshold    = 1
+  alarm_email  = "martinsorensen96@gmail.com"
+}

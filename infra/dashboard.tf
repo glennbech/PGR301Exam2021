@@ -76,7 +76,7 @@ resource "aws_cloudwatch_dashboard" "main" {
           "sparkline": false,
           "view": "singleValue",
           "region": "eu-west-1",
-          "title": "Responstime to danger thresholds",
+          "title": "PPE violation scan time",
           "period": 300,
           "stat": "Average",
           "setPeriodToTimeRange": true,
@@ -136,7 +136,7 @@ resource "aws_cloudwatch_dashboard" "main" {
           },
           "period": 900,
           "stat": "Maximum",
-          "title": "Time it takes to scan for helmets",
+          "title": "Time it takes to scan for weapons",
           "liveData": false,
           "singleValueFullPrecision": false,
           "legend": {
@@ -146,7 +146,38 @@ resource "aws_cloudwatch_dashboard" "main" {
           "sparkline": false,
           "trend": false
       }
-  }
+    },
+    {
+      "type": "metric",
+      "x": 15,
+      "y": 6,
+      "width": 7,
+      "height": 4,
+      "properties":{
+          "metrics": [
+              [ "${var.namespace}", "tank-detected-metric.count", "resource", "image", { "region": "eu-west-1", "label": "Tanks detected last minute" } ]
+          ],
+          "title": "Tanks in latest scan",
+          "sparkline": true,
+          "view": "singleValue",
+          "region": "eu-west-1",
+          "period": 300,
+          "stat": "Sum"
+      }
+    },
+    {
+      "type": "alarm",
+      "x": 15,
+      "y": 10,
+      "width": 6,
+      "height": 2,
+      "properties": {
+          "title": "Tank alarm status",
+          "alarms": [
+              "arn:aws:cloudwatch:eu-west-1:244530008913:alarm:RekognitionController-tank-detection"
+          ]
+      }
+    }
   ]
 }
 SEC

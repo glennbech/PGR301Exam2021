@@ -32,6 +32,7 @@ public class RekognitionController implements ApplicationListener<ApplicationRea
     private final AmazonS3 s3Client;
     private final AmazonRekognition rekognitionClient;
     private final MeterRegistry meterRegistry;
+    private final Counter tankDetectedCounter;
 
     private static final Logger logger = Logger.getLogger(RekognitionController.class.getName());
     
@@ -41,6 +42,7 @@ public class RekognitionController implements ApplicationListener<ApplicationRea
         this.s3Client = AmazonS3ClientBuilder.standard().build();
         this.rekognitionClient = AmazonRekognitionClientBuilder.standard().build();
         this.meterRegistry = meterRegistry;
+        this.tankDetectedCounter = meterRegistry.counter("tank-detected-metric", "resource", "image");
     }
 
     /**
@@ -159,6 +161,13 @@ public class RekognitionController implements ApplicationListener<ApplicationRea
                         .withMinConfidence(75F);
     
                 DetectLabelsResult result = rekognitionClient.detectLabels(request);
+                boolean tankDetected = result.getLabels().stream()
+                .anyMatch(label -> label.getName().equals("Tank"));
+                
+                if (tankDetected) {
+                tankDetectedCounter.increment();
+                logger.info("Tank detected in " + fileName);
+                }
     
                 List<String> itemsInImage = result.getLabels().stream()
                     .filter(label ->
