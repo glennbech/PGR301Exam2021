@@ -184,18 +184,18 @@ Kontinuerlig integrasjon handler om at kodeendringer, gjerne fra flere ulike utv
 En definisjon kan være: Automatisk bygging og testing av kode ved push til et repository. CI sørger for tidlig indentifisering av problemer samt sikre kontinuerlig og høy kodestandard på prosjektet ved å fremme en kultur for hyppig integrering. 
 Fordeler og ulemper ved bruk av CI i et utviklingsprosjekt, både som team og alene: 
 
-      -	Fordeler:
-      -	Kontinuerlig testing og oppdaging av feil tidlig: Med en pipeline sørger systemet for at alle oppdateringer av en applikasjon blir testet, på denne måten kan man               raskt oppdage og rette opp i Bugs uten at systemet oppdaterer seg med disse feilene. Pipelinen er også flink til å lokalisere nøyaktig hvor feilen skjer, noe som               gjør feilsøking og fiksing mye enklere. 
-      -	Automatisering av hverdagslige oppgaver: Oppgaver som egentlig bare blir rutine for programmerer slik som bygging og testing blir tatt hånd om av systemet, slik at             de kan fokusere på ny god kode og funksjonalitet. 
-      -	Konflikthåndtering: Med hyppig kodeoppdatering, vil det minske sannsynligheten for at to utviklere som arbeider på samme kode får konfliktproblemer, noe som sørger             for en mer smidig utvikling.  
-      -	Samarbeid: Alt handler ikke om det tekniske. Hyppig deling av nye kodesnutter kan hjelpe med å skape diskusjon i et team, hvor alle kan komme med sine                          tilbakemeldinger. 
+-	Fordeler:
+-	Kontinuerlig testing og oppdaging av feil tidlig: Med en pipeline sørger systemet for at alle oppdateringer av en applikasjon blir testet, på denne måten kan man               raskt oppdage og rette opp i Bugs uten at systemet oppdaterer seg med disse feilene. Pipelinen er også flink til å lokalisere nøyaktig hvor feilen skjer, noe som               gjør feilsøking og fiksing mye enklere. 
+-	Automatisering av hverdagslige oppgaver: Oppgaver som egentlig bare blir rutine for programmerer slik som bygging og testing blir tatt hånd om av systemet, slik at             de kan fokusere på ny god kode og funksjonalitet. 
+-	Konflikthåndtering: Med hyppig kodeoppdatering, vil det minske sannsynligheten for at to utviklere som arbeider på samme kode får konfliktproblemer, noe som sørger             for en mer smidig utvikling.  
+-	Samarbeid: Alt handler ikke om det tekniske. Hyppig deling av nye kodesnutter kan hjelpe med å skape diskusjon i et team, hvor alle kan komme med sine                          tilbakemeldinger. 
 
 
-      -	Ulemper: Det er greit å sette lys på at ingen utviklings prinsipper er uten mangler eller problemer.
-      -	Oppstart: Og sette opp et godt å robust pipeline /CI system kan være komplisert. Mye ressurser vil måtte gå til dette i oppstartfasen av ett prosjekt. 
-      -	Ressursbruk: Et CI system kan ofte kreve mye av en server, som ikke ville vært belastet på samme måte ved andre prinsipper.
-      -	Tekstkvalitet ekstra viktig: God kunnskap i teamet om det å skrive gode tester er viktig. Svake tester i pipeline kan føre til falske positiver og feil som sniker              seg igjennom systemet. Det er også viktig at noen på teamet jobber med å oppdatere disse testene til å holde stand med resten av kodebasen. 
-      -	Sikkerhet: Tar med en liten henvisning til det med sikkerhet. Pipelinen må ofte ha tilgang på sensitiv informasjon. Om man gjør feil så kan det eksempelvis hende               at noen med dårlige intensjoner får tilgang på ett AWS Miljø som kan koste Noen dyrt :)
+-	Ulemper: Det er greit å sette lys på at ingen utviklings prinsipper er uten mangler eller problemer.
+-	Oppstart: Og sette opp et godt å robust pipeline /CI system kan være komplisert. Mye ressurser vil måtte gå til dette i oppstartfasen av ett prosjekt. 
+-	Ressursbruk: Et CI system kan ofte kreve mye av en server, som ikke ville vært belastet på samme måte ved andre prinsipper.
+-	Tekstkvalitet ekstra viktig: God kunnskap i teamet om det å skrive gode tester er viktig. Svake tester i pipeline kan føre til falske positiver og feil som sniker              seg igjennom systemet. Det er også viktig at noen på teamet jobber med å oppdatere disse testene til å holde stand med resten av kodebasen. 
+-	Sikkerhet: Tar med en liten henvisning til det med sikkerhet. Pipelinen må ofte ha tilgang på sensitiv informasjon. Om man gjør feil så kan det eksempelvis hende               at noen med dårlige intensjoner får tilgang på ett AWS Miljø som kan koste Noen dyrt :)
       
 I praksis så kan et team bruke CI via Github på samme måte som vi har gjort det i dette faget. Sette opp en github actions med ulike oppgaver. Dette kan være alt fra bygg på ulike branches og ren testing. Vi har også sett på det med pull-request. Effektiv implementering av dette kan sørge for at all kode blir gjennomgått av for eksempel en lagleder som kan sørge for at all koden er konsistent og god før den blir lagt til på produksjon/main. 
 En god feedback loop med tilbakemelding av action sprossesene er også essensielt for å sørge for en smidig håndtering av eventuelle feil i en av prosessene som de ulike actions filene kjører. God CI handler også om å benytte seg godt av nettopp av ulike branches man kan jobbe på. Dette kan være main/produksjon, ulike funksjoner som har hver sin branch, ett for utvikling, ett for å teste tester etc. 
