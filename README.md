@@ -1,4 +1,4 @@
-![image](https://github.com/SorensenMartin/PGR301Exam2021/assets/89515797/b70eb964-3446-446f-bdd4-51d4d8382219)# PGR301Exam2021
+# PGR301Exam2021
 PGR301 Exam for kandidat 2021
 
 # Oppgave 1a
